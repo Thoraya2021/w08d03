@@ -1,5 +1,4 @@
 const todoModel = require("./../../db/models/todo");
-
 const createtodo = (req, res) => {
   const newtodo = new todoModel(
     { name: req.body.name, user: req.token.id });
