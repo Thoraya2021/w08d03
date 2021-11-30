@@ -6,6 +6,6 @@ const todoRouter = express.Router();
 todoRouter.get("/alltodos", getalltodos);
 todoRouter.get("/todos/:id",authentication, getTodosById);
 todoRouter.post("/todos",authentication, createtodo);
-todoRouter.put("/todos/:id", authentication, updateTodo);
+todoRouter.put("/todos/:id",authorization, updateTodo);
 todoRouter.delete("/todos/:id",authentication, deleteTodo);
 module.exports = todoRouter;
