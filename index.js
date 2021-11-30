@@ -21,7 +21,7 @@ app.use(todoRouter);
 
 
 //here to run locallhost 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`server running at port ${PORT}`);
 });
