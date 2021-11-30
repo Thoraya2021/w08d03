@@ -1,5 +1,5 @@
 const rolemodel =require ("./../../db/models/role");
-const create = (req, res) => {
+const create = (req, res) => { 
   const newRole = new rolemodel(req.body);
   newRole
     .save()
@@ -10,8 +10,6 @@ const create = (req, res) => {
       res.status(400).json(err);
     });
 };
-
-
 const roles = (req, res) => {
     rolemodel
     .find({})

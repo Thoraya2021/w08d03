@@ -10,13 +10,14 @@ const app = express();
 dotenv.config();
 const roleRouter = require('./routers/routes/role');
 const userRouter = require("./routers/routes/user");
-
+const todoRouter=require('./routers/routes/todo')
 
 //middel ware uses what i install and build should write here 
 app.use(express.json());
 app.use(cors());
 app.use(roleRouter)
 app.use(userRouter);
+app.use(todoRouter);
 
 
 //here to run locallhost 
