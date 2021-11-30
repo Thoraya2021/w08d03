@@ -6,5 +6,4 @@ const usermodel = new mongoose.Schema({
     password: { type: String, default: false },
     role:  [{ type: mongoose.Schema.Types.ObjectId, ref: "role" }],
   });
-
   module.exports =mongoose.model('User',usermodel)
