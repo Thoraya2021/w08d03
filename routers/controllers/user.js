@@ -2,6 +2,29 @@ const usermodel = require('./../../db/models/user')
 const bcrypt = require("bcrypt");
 var jwt = require('jsonwebtoken');
 
+
+const getallUser = (req, res) => {
+  usermodel
+  .find({})
+  .then((result) => {
+    res.status(200).json(result);
+  })
+  .catch((err) => {
+    res.status(400).json(err);
+  });
+};
+
+const deleteUser = (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  usermodel.findByIdAndDelete(id)
+    .then(() => {
+      res.status(200).json("user has deleted");
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
 const signup= async (req, res) =>{
     const { email, password, role } = req.body;
     const SALT = Number(process.env.SALT);
@@ -62,4 +85,4 @@ const signup= async (req, res) =>{
         res.status(400).json(err);
       });
   };
-      module.exports= { signup , login }
+      module.exports= { signup , login ,getallUser,deleteUser}
