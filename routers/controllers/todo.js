@@ -1,16 +1,17 @@
 const todoModel = require("./../../db/models/todo");
+
 const createtodo = (req, res) => {
-  const newtodo = new todoModel(
-    { name: req.body.name, user: req.token.id });
-  newtodo
-    .save()
-    .then((result) => {
-      res.status(201).json(result);
-    })
-    .catch((err) => {
-      res.status(400).json(err);
-    });
-};
+    const newTodo = new todoModel({ name: req.body.name, user: req.token.id });
+    newTodo
+      .save()
+      .then((result) => {
+        res.status(201).json(result);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  };
+
 const  getalltodos = (req, res) => {
   todoModel
     .find({ isDel: false, user: req.token.id })
