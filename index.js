@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cors());
 app.use(roleRouter)
 app.use(userRouter);
-app.use(todoRouter);
+app.use("/todo",todoRouter);
 
 
 //here to run locallhost 
