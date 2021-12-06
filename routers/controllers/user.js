@@ -46,7 +46,7 @@ const signup = async (req, res) => {
     });
 };
   
- const login = (req, res) => {
+const login = (req, res) => {
   const { email, password } = req.body;
   console.log(email, password);
   usermodel
@@ -63,11 +63,10 @@ const signup = async (req, res) => {
             const payload = {
               role: result.role,
             };
-
             const options = {
               expiresIn: "60m",
-            };            
-            const token = await jwt.sign(payload, SECRET_KEY, options);
+            };
+        const token = await jwt.sign(payload, SECRET_KEY, options);
 
             res.status(200).json({ result, token });
           } else {
@@ -85,6 +84,4 @@ const signup = async (req, res) => {
       res.status(400).json(err);
     });
 };
-
-
       module.exports= { signup , login ,getallUser,deleteUser}
