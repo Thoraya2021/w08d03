@@ -46,52 +46,45 @@ const signup = async (req, res) => {
     });
 };
   
-  const login = (req, res) => {
-    const { email, password } = req.body;
-    console.log(email, password);
-    usermodel
-      .findOne({ email })
-      .then(async (result) => {
-        if (result) {
-          if (email.toLowerCase() === result.email) {
-            const unhashPassword = await bcrypt.compare(
-              password,
-              result.password
-            );
-  
-            if (unhashPassword) {
-              const payload = {
-                role: result.role,
-              };
-  
-  
-  
-  
-              const options = {
-                expiresIn: "60m",
-              };
+ const login = (req, res) => {
+  const { email, password } = req.body;
+  console.log(email, password);
+  usermodel
+    .findOne({ email })
+    .then(async (result) => {
+      if (result) {
+        if (email.toLowerCase() === result.email) {
+          const unhashPassword = await bcrypt.compare(
+            password,
+            result.password
+          );
 
-  
-              
-              const token = await jwt.sign(payload, SECRET_KEY, options);
-  
-              res.status(200).json({ result, token });
+          if (unhashPassword) {
+            const payload = {
+              role: result.role,
+            };
 
-            } else {
-              res.status(400).json("invalid email or password");
-            }
+            const options = {
+              expiresIn: "60m",
+            };            
+            const token = await jwt.sign(payload, SECRET_KEY, options);
+
+            res.status(200).json({ result, token });
           } else {
             res.status(400).json("invalid email or password");
           }
         } else {
           res.status(400).json("invalid email or password");
         }
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(400).json(err);
-      });
-  };
+      } else {
+        res.status(400).json("invalid email or password");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(400).json(err);
+    });
+};
 
 
       module.exports= { signup , login ,getallUser,deleteUser}
