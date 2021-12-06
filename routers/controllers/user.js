@@ -84,4 +84,4 @@ const login = (req, res) => {
       res.status(400).json(err);
     });
 };
-      module.exports= { signup , login ,getallUser,deleteUser}
+      module.exports= { signup , login ,getallUser,deleteUser};
