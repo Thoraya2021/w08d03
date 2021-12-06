@@ -1,7 +1,7 @@
 const usermodel = require('./../../db/models/user')
 const bcrypt = require("bcrypt");
 var jwt = require('jsonwebtoken');
-
+const SECRET_KEY = process.env.SECRET_KEY;
 
 const getallUser = (req, res) => {
   usermodel
@@ -48,7 +48,7 @@ const signup = async (req, res) => {
   
 const login = (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password);
+
   usermodel
     .findOne({ email })
     .then(async (result) => {
