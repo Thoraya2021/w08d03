@@ -26,6 +26,8 @@ const  getalltodos = (req, res) => {
       res.status(400).json(err);
     });
 };
+
+
 const getTodosById = (req, res) => {
   const { id } = req.params;
   todoModel
@@ -43,20 +45,20 @@ const getTodosById = (req, res) => {
 };
 const deleteTodo = (req, res) => {
   const { id } = req.params;
-  todoModel
-    .findByIdAndUpdate(id, { $set: { isDeleted: true } })
-    .then((result) => {
-      if (result) {
-        res.status(200).json("is deleted");
-      } else {
-        res.status(404).json("not found");
-      }
-    })
-    .catch((err) => {
-      res.status(400).json(err);
-    });
-};
-
+    todoModel
+       .findByIdAndUpdate(id, { $set: { isDel: true } })
+      .then((result) => {
+        if (result) {
+          res.status(200).json("the tasks has deleted");
+        } else {
+          res.status(404).json("the tasks not found");
+        }
+      })
+      
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  };
 const updateTodo = (req, res) => {
   const { name } = req.body;
   const { id } = req.params;

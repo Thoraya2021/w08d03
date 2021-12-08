@@ -26,17 +26,17 @@ const deleteUser = (req, res) => {
     });
 };
 const signup = async (req, res) => {
-  const { email, password, username } = req.body;
+  const { email, password} = req.body;
   const SALT = Number(process.env.SALT);
-  const savedEmail = email.toLowerCase();
+ const savedEmail = email.toLowerCase();
   const hashedPassword = await bcrypt.hash(password, SALT);
-  const newUser = new usermodel({
+  const newuser = new usermodel({
     email: savedEmail,
     password: hashedPassword,
-    username,
+  
   });
 
-  newUser
+  newuser
     .save()
     .then((result) => {
       res.status(201).json(result);
